@@ -10,12 +10,12 @@ async def get_data(request):
     try:
         data = await request.json()
         res = []
-        wt1 = [i for i in data if i["username"].lower().startswith("w")]
+        wt1 = [i for i in data if i["username"].lower().startswith(("w", "d"))]
         if (wt1):
             res.append(wt1)
             print(res)
         async with aiohttp.ClientSession() as session:
-            async with session.post("http://127.0.0.1:8084/gatherdata", json=res) as res:
+            async with session.post("http://127.0.0.1:8083/gatherdata", json=res) as res:
                     result = await res.json()
                     print("Send!")
         return web.json_response({"status":"ok", "data_receive":res, "result": result.get("data")}, status=200) 
