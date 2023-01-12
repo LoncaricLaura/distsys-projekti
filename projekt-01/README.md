@@ -12,11 +12,11 @@ Microservis asinkrono poziva e-učenje API (M1), te prosljeđuje podatke kao dic
 
 Pokretanje servisa: python m1.py
 
-## WT mikroservis
+## WT1 mikroservis
 
-WT microservis uzima dictionary. Uzima samo redove gdje username počinje na w. Prosljeđuje kod 4. microservisu.
+WT microservis uzima dictionary. Uzima samo redove gdje username počinje na w i d. Prosljeđuje kod 4. microservisu.
 
-Pokretanje servisa: python wt.py
+Pokretanje servisa: python wt1.py
 
 ## M4 mikroservis
 
