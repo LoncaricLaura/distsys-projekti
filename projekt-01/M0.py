@@ -5,20 +5,21 @@ from aiohttp import web
 import json
 import pandas as pd 
 
-routes = web.RouteTableDef()
+routes = web.RouteTableDef() 
 
 df = pd.read_json("fakeDataset.json", lines=True, nrows=10000)
 
 async def fill_database():
     async with aiosqlite.connect("database.db") as db:
         for index, row in df.iterrows():            
+            username = row["repo_name"].split("/")[0]
             repo_name = row["repo_name"]
             path = row["path"]
             size = row["size"]
             line_max = row["line_max"]
             copies = row["copies"]
-            await db.execute("CREATE TABLE IF NOT EXISTS data(repo_name,path,size,line_max,copies)")
-            await db.execute("INSERT INTO data(repo_name,path,size,line_max,copies) VALUES (?,?,?,?,?)", (repo_name,path,size,line_max,copies))
+            await db.execute("CREATE TABLE IF NOT EXISTS data(username,repo_name,path,size,line_max,copies)")
+            await db.execute("INSERT INTO data(username,repo_name,path,size,line_max,copies) VALUES (?,?,?,?,?,?)", (username,repo_name,path,size,line_max,copies))
         await db.commit()
     return "Successfully filled the database!"
     
@@ -47,7 +48,7 @@ async def get_git_links(request):
                             break
                         response.append(row)
                     await db.commit()
-        return web.json_response({"status":"ok", "data":response}, status=200)
+        return web.json_response({"status": "ok", "data":response}, status=200)
     except Exception as e:
         return web.json_response({"failed":str(e)}, status=500)
 
