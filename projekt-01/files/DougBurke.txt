@@ -1,0 +1,1 @@
+{'username': 'DougBurke', 'repo_name': 'DougBurke/astropy', 'path': 'astropy/io/fits/hdu/base.py', 'size': 58256, 'line_max': 82, 'copies': 1}

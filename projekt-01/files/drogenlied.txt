@@ -1,0 +1,1 @@
+{'username': 'drogenlied', 'repo_name': 'drogenlied/qudi', 'path': 'hardware/switches/flipmirror.py', 'size': 6357, 'line_max': 118, 'copies': 1}
