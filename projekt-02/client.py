@@ -20,7 +20,7 @@ print(f"Dictionary length: {len(client_dict)}")
 res = []
 tasks = []
 async def codeProcessing():
-    async with aiohttp.ClientSession(connector = aiohttp.TCPConnector(ssl = False)) as session:
+    async with aiohttp.ClientSession() as session:
         for id, content in client_dict.items():
             tasks.append(asyncio.create_task(session.get("http://127.0.0.1:8080/", json={"id": id, "content": content})))
         print("Data sent!")
